@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Feed</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header with login -->
+    <header>
+        <div class="user-info">
+            <span id="user-name">Guest</span>
+            <span id="user-likes">Likes: 0</span>
+            <span id="user-comments">Comments: 0</span>
+        </div>
+        <button id="login-btn" class="btn">Login</button>
+    </header>
+
+    <!-- Photo feed -->
+    <main id="photo-feed">
+        <div class="photo-post">
+            <img src="/images/Supreme_pizza.jpg" alt="Photo 1" class="photo-img">
+            <div class="post-info">
+                <button class="like-btn btn" data-liked="false">❤️ Like</button>
+                <span class="like-count">0 likes</span>
+                <button class="comment-btn btn">💬 Comment</button>
+                <span class="comment-count">0 comments</span>
+            </div>
+        </div>
+        <!-- More photo posts can be added -->
+    </main>
+
+    <!-- Modal for login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <h2>Login</h2>
+            <label for="nickname">Nickname:</label>
+            <input type="text" id="nickname" name="nickname">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <button id="login-submit" class="btn">Login</button>
+            <button id="close-modal" class="btn secondary-btn">Close</button>
+            <p>Don't have an account? <a href="#" id="register-link">Register here</a></p>
+        </div>
+    </div>
+
+    <!-- Modal for registration -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <h2>Register</h2>
+            <label for="new-nickname">Nickname:</label>
+            <input type="text" id="new-nickname" name="new-nickname">
+            <label for="new-password">Password:</label>
+            <input type="password" id="new-password" name="new-password">
+            <button id="register-submit" class="btn">Register</button>
+            <button id="close-register-modal" class="btn secondary-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Modal for viewing photo details and commenting -->
+    <div id="photo-modal" class="modal">
+        <div class="modal-content">
+            <img id="modal-photo" src="" alt="Photo">
+            <div class="post-info-modal">
+                <button class="like-btn-modal btn">❤️ Like</button>
+                <span class="like-count-modal">0 likes</span>
+                <div class="comments-section">
+                    <input type="text" id="new-comment" placeholder="Add a comment">
+                    <button id="add-comment" class="btn">Add Comment</button>
+                </div>
+                <ul id="comments-list"></ul>
+            </div>
+            <button id="close-photo-modal" class="btn secondary-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Photo Feed | All Rights Reserved</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
