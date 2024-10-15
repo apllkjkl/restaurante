@@ -1,81 +1,69 @@
+// Modal functionality
+const loginModal = document.getElementById('login-modal');
+const registerModal = document.getElementById('register-modal');
+const photoModal = document.getElementById('photo-modal');
+const loginBtn = document.getElementById('login-btn');
+const registerLink = document.getElementById('register-link');
+const closeButtons = document.querySelectorAll('.close');
 
+loginBtn.onclick = () => loginModal.style.display = 'block';
+registerLink.onclick = (e) => {
+    e.preventDefault();
+    loginModal.style.display = 'none';
+    registerModal.style.display = 'block';
+};
 
-// Global variables
-let currentUser = null;
-
-// Open the login modal
-document.getElementById('login-btn').addEventListener('click', () => {
-    document.getElementById('login-modal').style.display = 'flex';
+closeButtons.forEach(btn => btn.onclick = () => {
+    loginModal.style.display = 'none';
+    registerModal.style.display = 'none';
+    photoModal.style.display = 'none';
 });
 
-// Close the login modal
-document.getElementById('close-login-modal').addEventListener('click', () => {
-    document.getElementById('login-modal').style.display = 'none';
-});
+window.onclick = (e) => {
+    if (e.target === loginModal || e.target === registerModal || e.target === photoModal) {
+        e.target.style.display = 'none';
+    }
+};
 
-// Switch to register modal
-document.getElementById('register-link').addEventListener('click', () => {
-    document.getElementById('login-modal').style.display = 'none';
-    document.getElementById('register-modal').style.display = 'flex';
-});
-
-// Close the register modal
-document.getElementById('close-register-modal').addEventListener('click', () => {
-    document.getElementById('register-modal').style.display = 'none';
-});
-
-// Open the photo modal on clicking the photo
-const photoPosts = document.querySelectorAll('.photo-post');
-photoPosts.forEach((post) => {
-    const likeBtn = post.querySelector('.like-btn');
-    const commentBtn = post.querySelector('.comment-btn');
-    let likes = 0;
-    let comments = 0;
-
-    likeBtn.addEventListener('click', () => {
-        likes++;
-        post.querySelector('.like-count').innerText = `${likes} likes`;
-    });
-
-    commentBtn.addEventListener('click', () => {
-        const modal = document.getElementById('photo-modal');
-        const imgSrc = post.querySelector('.photo-img').src;
-        modal.style.display = 'flex';
-        document.getElementById('modal-photo').src = imgSrc;
-
-        const newCommentButton = modal.querySelector('#add-comment');
-        newCommentButton.onclick = () => {
-            const newComment = modal.querySelector('#new-comment').value;
-            if (newComment.trim() !== "") {
-                const li = document.createElement('li');
-                li.innerText = newComment;
-                modal.querySelector('#comments-list').appendChild(li);
-                modal.querySelector('#new-comment').value = ''; // Clear input
-                comments++;
-                post.querySelector('.comment-count').innerText = `${comments} comments`;
-            }
-        };
+// Like and comment functionality
+document.querySelectorAll('.like-btn').forEach(likeBtn => {
+    likeBtn.addEventListener('click', function () {
+        let likeCount = this.nextElementSibling;
+        let count = parseInt(likeCount.textContent);
+        if (!this.classList.contains('liked')) {
+            count++;
+            this.classList.add('liked');
+        } else {
+            count--;
+            this.classList.remove('liked');
+        }
+        likeCount.textContent = count;
     });
 });
 
-// Close photo modal
-document.getElementById('close-photo-modal').addEventListener('click', () => {
-    document.getElementById('photo-modal').style.display = 'none';
+document.querySelectorAll('.comment-btn').forEach(commentBtn => {
+    commentBtn.addEventListener('click', function () {
+        let postId = this.closest('.photo-post').dataset.postId;
+        openPhotoModal(postId);
+    });
 });
 
-// Register functionality (simulated)
-document.getElementById('register-submit').addEventListener('click', () => {
-    const nickname = document.getElementById('new-nickname').value;
-    const password = document.getElementById('new-password').value;
-    alert(`Registered as: ${nickname}`);
-    document.getElementById('register-modal').style.display = 'none';
+function openPhotoModal(postId) {
+    photoModal.style.display = 'block';
+    // Assuming you fetch photo details by postId, for now hardcoded:
+    document.getElementById('modal-photo').src = `photo${postId}.jpg`;
+    document.getElementById('photo-legend').textContent = `This is photo ${postId}`;
+    document.getElementById('modal-like-count').textContent = document.querySelector(`[data-post-id="${postId}"] .like-count`).textContent;
+}
+
+// Posting a comment
+document.getElementById('post-comment').addEventListener('click', function () {
+    let commentInput = document.getElementById('comment-input');
+    if (commentInput.value.trim() !== "") {
+        let commentList = document.getElementById('comments-list');
+        let newComment = document.createElement('li');
+        newComment.textContent = commentInput.value;
+        commentList.appendChild(newComment);
+        commentInput.value = "";
+    }
 });
-
-// Login functionality (simulated)
-document.getElementById('login-submit').addEventListener('click', () => {
-    const nickname = document.getElementById('nickname').value;
-    document.getElementById('user-name').innerText = nickname; // Display logged-in user
-    document.getElementById('login-modal').style.display = 'none';
-});
-
-
