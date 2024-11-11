@@ -6,8 +6,10 @@ body {
     background-color: #f0f0f0;
 }
 
+
+
 header {
-    background-color: #ff6600;
+    background-color: #f0f0f0;
     color: white;
     padding: 15px;
     display: flex;
@@ -15,8 +17,13 @@ header {
     align-items: center;
 }
 
+header p{
+  color: black;
+ text-align: left;
+}
+
 button {
-    background-color: #ff6600;
+    background-color: #d97014;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -24,8 +31,20 @@ button {
     border-radius: 5px;
 }
 
+.strike p{
+    text-decoration: line-through;
+}
+
 .container {
     display: flex;
+}
+
+.user-avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+
 }
 
 .user-sidebar {
@@ -48,18 +67,19 @@ button {
 
 .photo-post {
     background-color: white;
-    margin: 20px;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    position: relative;
+    margin: 40px;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 110%;
+    max-width: 700px;
+    position: flex;
+    
 }
 
 .photo-post img {
     width: 100%;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .post-details {
@@ -68,19 +88,19 @@ button {
     justify-content: space-between;
 }
 
-.like-btn {
-    cursor: pointer;
-    color: red;
-}
-
 footer {
-    background-color: #ff6600;
+    background-color: #d97014;
     color: white;
     text-align: center;
     padding: 20px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+}
+
+footer img{
+    width: 1%;
+}
+
+footer p{
+text-align: left;
 }
 
 .modal {
@@ -102,11 +122,7 @@ footer {
     border-radius: 10px;
     width: 80%;
     max-width: 400px;
-}
-
-.modal img {
-    width: 100%;
-    border-radius: 10px;
+    position: relative;
 }
 
 .close {
@@ -117,14 +133,6 @@ footer {
     cursor: pointer;
 }
 
-/* Login/registration modal form */
-#login-form, #register-form {
-    display: flex;
-    flex-direction: column;
-}
-
-#login-form input, #register-form input {
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 16px;
+.comments-section {
+    margin-top: 20px;
 }
