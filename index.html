@@ -8,7 +8,6 @@
 </head>
 <body>
     <header>
-        <img src=>
         <button id="login-btn">Entrar</button>
     </header>
 
@@ -18,9 +17,8 @@
                 <img src="Anexos/logo/logo_sabor_do_brasil.png" alt="Avatar do usuário" class="user-avatar">
                 <h2>Sabor do Brasil</h2>
                 <p class="strike"></p>
-                <br>
-                <p>Quantidade Likes: 0</p>
-                <p>Quantidade Dislikes: 0</p>
+                <p>Quantidade Likes: <span id="total-likes">0</span></p>
+                <p>Quantidade Dislikes: <span id="total-dislikes">0</span></p>
             </div>
         </aside>
 
@@ -28,60 +26,26 @@
             <div class="photo-post" data-id="1">
                 <h3>Título do prato 01</h3>
                 <img src="Anexos/publicacao/publicacao01.png" alt="Prato 01" class="photo" onclick="openPhotoDetails(1)">
-                <div class="post-details">
-
-                </div>
                 <div class="post-actions">
-                    <button onclick="toggleLike(1)">👍 2</button>
-                    <button onclick="toggleDislike(1)">👎 1</button>
-                    <button onclick="toggleComments(1)">💬 4</button>
+                    <button onclick="toggleLike(1)">👍 <span id="likes-1">2</span></button>
+                    <button onclick="toggleDislike(1)">👎 <span id="dislikes-1">1</span></button>
+                    <button onclick="toggleComments(1)">💬 <span id="comments-count-1">4</span></button>
+                </div>
+                <div id="comments-section-1" class="comments-section">
+                    <input type="text" id="comment-input-1" placeholder="Adicione um comentário">
+                    <button onclick="addComment(1)">Comentar</button>
+                    <div id="comments-list-1"></div>
                 </div>
             </div>
-        </main>
-        <main class="photo-feed">
-            <div class="photo-post" data-id="1">
-                <h3>Título do prato 01</h3>
-                <img src="Anexos/publicacao/publicacao02.png" alt="Prato 02" class="photo" onclick="openPhotoDetails(1)">
-                <div class="post-details">
-
-                </div>
-                <div class="post-actions">
-                    <button onclick="toggleLike(1)">👍 2</button>
-                    <button onclick="toggleDislike(1)">👎 1</button>
-                    <button onclick="toggleComments(1)">💬 4</button>
-                </div>
-            </div>
+            <!-- Adicione outras fotos aqui com a mesma estrutura -->
         </main>
     </div>
+    
 
     <footer>
-        <p>Sabor do Brasil </p>
+        <p>Sabor do Brasil</p>
         <p id="copy">&copy; 2024</p>
-        <img src="Anexos/icones/Instagram.svg" alt="">
-        <img src="Anexos/icones/Twitter.svg" alt="">
-        <img src="Anexos/icones/Whatsapp.svg" alt="">
-        <img src="Anexos/icones/Globe.svg" alt="">
-        
     </footer>
-
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <img id="modal-img" src="" alt="Detalhes da foto">
-            <h3 id="modal-title">Título do prato</h3>
-            <p id="modal-location">Local - Cidade/Estado</p>
-            <div class="post-actions">
-                <button onclick="toggleLikeInModal()">👍 <span id="modal-likes">0</span></button>
-                <button onclick="toggleDislikeInModal()">👎 <span id="modal-dislikes">0</span></button>
-                <button onclick="toggleCommentsInModal()">💬 <span id="modal-comments">0</span></button>
-            </div>
-            <div class="comments-section">
-                <input type="text" id="comment-input" placeholder="Adicione um comentário">
-                <button onclick="addComment()">Comentar</button>
-                <div id="comments-list"></div>
-            </div>
-        </div>
-    </div>
 
     <script src="script.js"></script>
 </body>
